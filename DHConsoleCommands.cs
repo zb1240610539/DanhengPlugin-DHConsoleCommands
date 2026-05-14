@@ -26,7 +26,7 @@ public class DHConsoleCommands : IPlugin
         _logger.Info(I18NManager.Translate("DHConsoleCommands.LoadedDHConsoleCommands"));
         // load data
         ResourceManager.LoadSingleExcel<AvatarRelicRecommendExcel>(typeof(AvatarRelicRecommendExcel));
-
+        ResourceManager.LoadSingleExcel<EquipmentRecommendExcel>(typeof(EquipmentRecommendExcel));
         PluginConstants.RelicMainAffix.Add(RelicTypeEnum.HEAD, []);
         PluginConstants.RelicMainAffix.Add(RelicTypeEnum.HAND, []);
         PluginConstants.RelicMainAffix.Add(RelicTypeEnum.BODY, []);
