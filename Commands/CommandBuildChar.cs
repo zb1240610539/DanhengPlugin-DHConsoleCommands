@@ -116,12 +116,43 @@ public class CommandBuildChar : ICommand
             return;
         }
 
+        StringBuilder dryRunOutput = new();
+
+        // 🆕 第一步：配装推荐光锥
+        PluginGameData.EquipmentRecommendData.TryGetValue(avatar.AvatarId, out var equipExcel);
+        if (equipExcel != null && equipExcel.EquipmentList.Count > 0)
+        {
+            int recommendEquipId = equipExcel.EquipmentList[0];
+            
+            if (GameData.EquipmentConfigData.TryGetValue(recommendEquipId, out var equipConfig))
+            {
+                var itemData = await player.InventoryManager!.AddItem(
+                    recommendEquipId, 
+                    1, 
+                    rank: 1,
+                    level: 80,
+                    sync: false
+                );
+                
+                if (itemData != null)
+                {
+                    await player.InventoryManager!.EquipAvatar(avatar.AvatarId, itemData.UniqueId);
+                    if (dryRun)
+                    {
+                        dryRunOutput.AppendLine($@"[光锥] {recommendEquipId} (Lv.80 S1)");
+                    }
+                    else
+                    {
+                        await arg.SendMsg($@"配装光锥: {recommendEquipId} (Lv.80 S1)");
+                    }
+                }
+            }
+        }
+
         List<RelicTypeEnum> relicTypes = [
             RelicTypeEnum.HEAD, RelicTypeEnum.HAND, RelicTypeEnum.BODY, RelicTypeEnum.FOOT,
             RelicTypeEnum.NECK, RelicTypeEnum.OBJECT
         ];
-
-        StringBuilder dryRunOutput = new();
 
         for (int i = 0; i < relicTypes.Count; i++)
         {
