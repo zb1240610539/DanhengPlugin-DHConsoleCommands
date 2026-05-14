@@ -5,5 +5,5 @@ namespace DanhengPlugin.DHConsoleCommands.Data;
 public class PluginGameData
 {
     public static Dictionary<int, AvatarRelicRecommendExcel> AvatarRelicRecommendData { get; set; } = [];
-    public static Dictionary<int, EquipmentConfigExcel> EquipmentRecommendData { get; set; } = [];
+    public static Dictionary<int, EquipmentRecommendExcel> EquipmentRecommendData { get; set; } = [];
 }
