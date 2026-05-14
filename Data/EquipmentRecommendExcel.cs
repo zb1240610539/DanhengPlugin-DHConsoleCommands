@@ -1,17 +1,25 @@
 using EggLink.DanhengServer.Data;
-using EggLink.DanhengServer.Enums.Avatar;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace DanhengPlugin.DHConsoleCommands.Data;
 
-[ResourceEntity("EquipmentRecommend.json")]
+[ResourceEntity("AvatarEquipRecommend.json")]
 public class EquipmentRecommendExcel : ExcelResource
 {
+    /// <summary>
+    /// 角色ID
+    /// </summary>
+    [JsonProperty("AvatarID")]
     public int AvatarID { get; set; }
     
-    // 推荐的光锥ID列表
-    public List<int> EquipmentIDList { get; set; } = [];
+    /// <summary>
+    /// 推荐光锥ID列表 (优先级从高到低)
+    /// 索引0: 最优推荐
+    /// 索引1: 备选1
+    /// 索引2: 备选2
+    /// </summary>
+    [JsonProperty("EquipmentList")]
+    public List<int> EquipmentList { get; set; } = [];
 
     public override int GetId()
     {
