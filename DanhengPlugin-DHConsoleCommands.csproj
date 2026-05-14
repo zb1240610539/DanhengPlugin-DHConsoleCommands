@@ -5,6 +5,16 @@
     <RootNamespace>DanhengPlugin.DHConsoleCommands</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    
+    <!-- DLL 输出配置 -->
+    <OutputType>Library</OutputType>
+    <AssemblyName>DanhengPlugin.DHConsoleCommands</AssemblyName>
+    <Version>1.2.0</Version>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    
+    <!-- 输出目录配置 -->
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
